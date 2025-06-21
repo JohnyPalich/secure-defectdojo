@@ -36,6 +36,12 @@ jobs:
         run: |
           semgrep --config=auto . --json > semgrep-report.json || true
 
+      - name: Run GitLeaks (check for secrets)
+        run: |
+          curl -sSL https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks-linux-amd64 -o gitleaks
+          chmod +x gitleaks
+          ./gitleaks detect --source . --report-format json --report-path gitleaks-report.json || true
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:

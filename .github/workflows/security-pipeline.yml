@@ -50,3 +50,5 @@ jobs:
             flake8-report.txt
             bandit-report.txt
             semgrep-report.json
+            gitleaks-report.json
+
